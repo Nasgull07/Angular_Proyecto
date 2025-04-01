@@ -1,0 +1,36 @@
+<div>
+    <h2>Filtrar Cambios de Orden por Usuario</h2>
+    <input type="text" [(ngModel)]="userId" placeholder="Ingrese ID del usuario" />
+    <button (click)="fetchOrderChangesByUserId()">Buscar</button>
+</div>
+
+<div>
+    <h2>Filtrar Cambios de Orden por ID</h2>
+    <input type="text" [(ngModel)]="modificacionId" placeholder="Ingrese ID de la modificacion" />
+    <button (click)="fetchOrderChangesById()">Buscar</button>
+</div>
+
+<div *ngIf="orderChanges.length > 0; else noData">
+  <h2>Historial Cambios de Orden</h2>
+  <ul>
+    <li *ngFor="let orderChange of orderChanges">
+      <!-- Muestra las propiedades relevantes de cada cambio de orden -->
+      <p><strong>ID del cambio:</strong> {{ orderChange._id }}</p>
+      <p><strong>Fecha del cambio:</strong> {{ orderChange.changeDate }}</p>
+      <p><strong>Descripción:</strong> {{ orderChange.changes }}</p>
+      <app-order [order]="orderChange.order_id"></app-order>
+      <hr />
+    </li>
+
+    
+  </ul>
+</div>
+
+<ng-template #noData>
+  <p>No hay cambios de orden disponibles.</p>
+</ng-template>
+
+<div>
+    <button (click)="createOrderChange()">Duplicar Primera Orden</button>
+  </div>
+

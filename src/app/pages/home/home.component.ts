@@ -4,11 +4,12 @@ import { ApiService } from '../../services/api.service';
 import { TableComponent } from '../../components/table/table.component';
 import { FilterSearchComponent } from '../../components/filter-search/filter-search.component';
 import { TableSearchComponent } from '../../components/table-search/table-search.component';
+import { OrderChangeComponent } from '../../components/order-change/order-change.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  imports: [CommonModule, TableComponent/*, FilterSearchComponent , TableSearchComponent*/], // Importa CommonModule aquí
+  imports: [CommonModule, TableComponent, OrderChangeComponent/*, FilterSearchComponent , TableSearchComponent*/], // Importa CommonModule aquí
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {

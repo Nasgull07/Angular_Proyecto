@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { OrderChange } from '../models/order-change';
 
 @Injectable({
   providedIn: 'root'
@@ -66,4 +67,25 @@ export class ApiService {
   searchUsers(criteria: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/search-users`, criteria);
   }
+
+  getAllOrder_changes(page: number, limit: number): Observable<OrderChange[]> {
+    const params = { page: page.toString(), limit: limit.toString() };
+    
+    console.log('Order Changes:', this.getAllOrder_changes); // Verifica que los datos se estén obteniendo correctamente
+    return this.http.get<any>(`${this.apiUrl}/order-changes/`, { params });
+  }
+
+  getOrderChangeById(orderChangeId: string): Observable<OrderChange[]> {
+    return this.http.get<OrderChange[]>(`${this.apiUrl}/order-changes/${orderChangeId}`);
+  }
+
+  createOrderChange(orderChange: OrderChange): Observable<OrderChange> {
+    console.log('Creando Order Change:', orderChange); // Verifica que los datos se estén enviando correctamente
+    return this.http.post<OrderChange>(`${this.apiUrl}/order-changes/`, orderChange);
+  }
+
+  getOrderChangesByUserId(userId: string): Observable<OrderChange[]> {
+    return this.http.get<OrderChange[]>(`${this.apiUrl}/order-changes/user/${userId}`);
+  }
+
 }
